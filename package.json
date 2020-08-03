@@ -1,0 +1,31 @@
+{
+	"name": "@hugoalh/read-directory-depth",
+	"version": "0.1.0",
+	"description": "A module/library to provide a easier way to read directory on one-go.",
+	"keywords": [
+		"nodejs",
+		"readdir",
+		"directory",
+		"tree",
+		"depth"
+	],
+	"homepage": "https://github.com/hugoalh/NodeJS.ReadDirectoryDepth#readme",
+	"bugs": {
+		"url": "https://github.com/hugoalh/NodeJS.ReadDirectoryDepth/issues"
+	},
+	"license": "MIT",
+	"author": "hugoalh",
+	"main": "main.js",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/hugoalh/NodeJS.ReadDirectoryDepth.git"
+	},
+	"dependencies": {
+		"@hugoalh/advanced-determine": "^3.0.1"
+	},
+	"engines": {
+		"node": ">= 10.0.0",
+		"npm": ">= 6.0.0"
+	},
+	"private": false
+}
