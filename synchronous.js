@@ -9,12 +9,13 @@ const path = require("path").win32;
 /**
  * @function synchronous
  * @alias sync
- * @param {string} rootDirectoryPath
- * @param {object} [option]
- * @param {(string|[string,string])[]} [option.excludeFile]
- * @param {(string|[string,string])[]} [option.excludeSubDirectory]
- * @param {number} [option.maximumDepth=Infinity]
- * @returns {string[]}
+ * @description Read directory with depth in synchronous.
+ * @param {string} rootDirectoryPath Root directory path.
+ * @param {object} [option] Option.
+ * @param {(string|[string,string]|RegExp)[]} [option.excludeFile] Exclude file (in pattern).
+ * @param {(string|[string,string]|RegExp)[]} [option.excludeSubDirectory] Exclude sub directory (in pattern).
+ * @param {number} [option.maximumDepth=Infinity] The maximum depth level specifying how deep a sub directory should be read.
+ * @returns {string[]} File list.
  */
 function synchronous(rootDirectoryPath, option) {
 	let runtime = {
@@ -37,12 +38,12 @@ function synchronous(rootDirectoryPath, option) {
 				throw new TypeError(`Invalid type of "option.excludeFile"! Require type of array.`);
 			};
 			option.excludeFile.forEach((pattern) => {
-				if (advancedDetermine.isString(pattern) == true) {
+				if (advancedDetermine.isString(pattern) == true || advancedDetermine.isRegularExpression(pattern) == true) {
 					runtime.excludeFile.push(pattern);
 				} else if (advancedDetermine.isArray(pattern) == true && advancedDetermine.isString(pattern[0]) == true && advancedDetermine.isString(pattern[1]) == true) {
 					runtime.excludeFile.push(new RegExp(...pattern));
 				} else {
-					throw new TypeError(`Invalid type of "option.excludeFile.pattern"! Require type of string, or [string, string].`);
+					throw new TypeError(`Invalid type of "option.excludeFile.pattern"! Require type of string, [string, string], or regular expression.`);
 				};
 			});
 			runtime.excludeFilePatternTotal = runtime.excludeFile.length;
@@ -52,12 +53,12 @@ function synchronous(rootDirectoryPath, option) {
 				throw new TypeError(`Invalid type of "option.excludeSubDirectory"! Require type of array.`);
 			};
 			option.excludeSubDirectory.forEach((pattern) => {
-				if (advancedDetermine.isString(pattern) == true) {
+				if (advancedDetermine.isString(pattern) == true || advancedDetermine.isRegularExpression(pattern) == true) {
 					runtime.excludeSubDirectory.push(pattern);
 				} else if (advancedDetermine.isArray(pattern) == true && advancedDetermine.isString(pattern[0]) == true && advancedDetermine.isString(pattern[1]) == true) {
 					runtime.excludeSubDirectory.push(new RegExp(...pattern));
 				} else {
-					throw new TypeError(`Invalid type of "option.excludeSubDirectory.pattern"! Require type of string, or [string, string].`);
+					throw new TypeError(`Invalid type of "option.excludeSubDirectory.pattern"! Require type of string, [string, string], or regular expression.`);
 				};
 			});
 			runtime.excludeSubDirectoryPatternTotal = runtime.excludeSubDirectory.length;
