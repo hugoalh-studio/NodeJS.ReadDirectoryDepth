@@ -1,6 +1,6 @@
 {
 	"name": "@hugoalh/read-directory-depth",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"description": "A module/library to provide a easier way to read directory on one-go.",
 	"keywords": [
 		"nodejs",
