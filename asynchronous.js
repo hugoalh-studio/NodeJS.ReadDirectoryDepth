@@ -15,9 +15,9 @@ const synchronousReadDirectoryDepth = require("./synchronous.js");
  * @param {number} [option.maximumDepth=Infinity] The maximum depth level specifying how deep a sub directory should be read.
  * @returns {string[]} File list.
  */
-function asynchronous() {
+function asynchronous(rootDirectoryPath, option) {
 	return new Promise((resolve, reject) => {
-		const result = synchronousReadDirectoryDepth(...arguments);
+		const result = synchronousReadDirectoryDepth(rootDirectoryPath, option);
 		resolve(result);
 	});
 };
