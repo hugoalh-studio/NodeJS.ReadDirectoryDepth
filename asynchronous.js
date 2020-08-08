@@ -19,6 +19,6 @@ function asynchronous(rootDirectoryPath, option) {
 	return new Promise((resolve, reject) => {
 		const result = synchronousReadDirectoryDepth(rootDirectoryPath, option);
 		resolve(result);
-	});
+	}).catch();
 };
 module.exports = asynchronous;

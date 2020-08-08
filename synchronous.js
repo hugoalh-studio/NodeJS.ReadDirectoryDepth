@@ -32,8 +32,8 @@ function synchronous(rootDirectoryPath, option) {
 		rootDirectoryPath = path.join(process.cwd(), rootDirectoryPath);
 	};
 	rootDirectoryPath = new URL(rootDirectoryPath).toString();
-	if (advancedDetermine.isObject(option) == true) {
-		if (option.excludeFile) {
+	if (advancedDetermine.isObjectPair(option) == true) {
+		if (typeof option.excludeFile != "undefined") {
 			if (advancedDetermine.isArray(option.excludeFile) == false) {
 				throw new TypeError(`Invalid type of "option.excludeFile"! Require type of array.`);
 			};
@@ -48,7 +48,7 @@ function synchronous(rootDirectoryPath, option) {
 			});
 			runtime.excludeFilePatternTotal = runtime.excludeFile.length;
 		};
-		if (option.excludeSubDirectory) {
+		if (typeof option.excludeSubDirectory != "undefined") {
 			if (advancedDetermine.isArray(option.excludeSubDirectory) == false) {
 				throw new TypeError(`Invalid type of "option.excludeSubDirectory"! Require type of array.`);
 			};
@@ -63,7 +63,7 @@ function synchronous(rootDirectoryPath, option) {
 			});
 			runtime.excludeSubDirectoryPatternTotal = runtime.excludeSubDirectory.length;
 		};
-		if (option.maximumDepth || option.maximumDepth === 0) {
+		if (typeof option.maximumDepth != "undefined") {
 			if (option.maximumDepth !== Infinity && advancedDetermine.isNumberPositiveInteger(option.maximumDepth) != true) {
 				throw new TypeError(`Invalid type of "option.maximumDepth"! Require type of positive integer number.`);
 			};
@@ -116,7 +116,7 @@ function synchronous(rootDirectoryPath, option) {
 							listCatalog.file.push(elementRootPath);
 						};
 					};
-				}).catch((error) => { });
+				}).catch();
 			})
 		);
 		return listCatalog;

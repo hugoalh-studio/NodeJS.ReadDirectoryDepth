@@ -1,6 +1,6 @@
 {
 	"name": "@hugoalh/read-directory-depth",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "A module/library to provide a easier way to read directory on one-go.",
 	"keywords": [
 		"nodejs",
@@ -21,7 +21,7 @@
 		"url": "git+https://github.com/hugoalh/NodeJS.ReadDirectoryDepth.git"
 	},
 	"dependencies": {
-		"@hugoalh/advanced-determine": "^3.0.2"
+		"@hugoalh/advanced-determine": "^3.1.0"
 	},
 	"engines": {
 		"node": ">= 10.0.0",

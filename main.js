@@ -6,7 +6,7 @@
 /**
  * @const {string} version
  */
-const version = "1.0.0";
+const version = "1.0.1";
 
 const asynchronous = require("./asynchronous.js");
 const synchronous = require("./synchronous.js");
