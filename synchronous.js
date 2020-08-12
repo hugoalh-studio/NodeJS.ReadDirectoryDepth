@@ -5,6 +5,7 @@
 ==================*/
 const advancedDetermine = require("@hugoalh/advanced-determine");
 const fileSystem = require("fs");
+const internalService = require("./internalservice.js");
 const path = require("path").win32;
 /**
  * @function synchronous
@@ -26,7 +27,7 @@ function synchronous(rootDirectoryPath, option) {
 		maximumDepth: Infinity
 	};
 	if (advancedDetermine.isString(rootDirectoryPath) != true) {
-		throw new TypeError(`Invalid type of "rootDirectoryPath"! Require type of string.`);
+		return internalService.prefabTypeError("rootDirectoryPath", "string");
 	};
 	if (rootDirectoryPath.search(/:\\/giu) == -1) {
 		rootDirectoryPath = path.join(process.cwd(), rootDirectoryPath);
@@ -35,7 +36,7 @@ function synchronous(rootDirectoryPath, option) {
 	if (advancedDetermine.isObjectPair(option) == true) {
 		if (typeof option.excludeFile != "undefined") {
 			if (advancedDetermine.isArray(option.excludeFile) == false) {
-				throw new TypeError(`Invalid type of "option.excludeFile"! Require type of array.`);
+				return internalService.prefabTypeError("option.excludeFile", "array");
 			};
 			option.excludeFile.forEach((pattern) => {
 				if (advancedDetermine.isString(pattern) == true || advancedDetermine.isRegularExpression(pattern) == true) {
@@ -43,14 +44,14 @@ function synchronous(rootDirectoryPath, option) {
 				} else if (advancedDetermine.isArray(pattern) == true && advancedDetermine.isString(pattern[0]) == true && advancedDetermine.isString(pattern[1]) == true) {
 					runtime.excludeFile.push(new RegExp(...pattern));
 				} else {
-					throw new TypeError(`Invalid type of "option.excludeFile.pattern"! Require type of string, [string, string], or regular expression.`);
+					return internalService.prefabTypeError("option.excludeFile.pattern", "string, [string, string], or regular expression");
 				};
 			});
 			runtime.excludeFilePatternTotal = runtime.excludeFile.length;
 		};
 		if (typeof option.excludeSubDirectory != "undefined") {
 			if (advancedDetermine.isArray(option.excludeSubDirectory) == false) {
-				throw new TypeError(`Invalid type of "option.excludeSubDirectory"! Require type of array.`);
+				return internalService.prefabTypeError("option.excludeSubDirectory", "array");
 			};
 			option.excludeSubDirectory.forEach((pattern) => {
 				if (advancedDetermine.isString(pattern) == true || advancedDetermine.isRegularExpression(pattern) == true) {
@@ -58,14 +59,14 @@ function synchronous(rootDirectoryPath, option) {
 				} else if (advancedDetermine.isArray(pattern) == true && advancedDetermine.isString(pattern[0]) == true && advancedDetermine.isString(pattern[1]) == true) {
 					runtime.excludeSubDirectory.push(new RegExp(...pattern));
 				} else {
-					throw new TypeError(`Invalid type of "option.excludeSubDirectory.pattern"! Require type of string, [string, string], or regular expression.`);
+					return internalService.prefabTypeError("option.excludeSubDirectory.pattern", "string, [string, string], or regular expression");
 				};
 			});
 			runtime.excludeSubDirectoryPatternTotal = runtime.excludeSubDirectory.length;
 		};
 		if (typeof option.maximumDepth != "undefined") {
 			if (option.maximumDepth !== Infinity && advancedDetermine.isNumberPositiveInteger(option.maximumDepth) != true) {
-				throw new TypeError(`Invalid type of "option.maximumDepth"! Require type of positive integer number.`);
+				return internalService.prefabTypeError("option.maximumDepth", "positive integer number");
 			};
 			runtime.maximumDepth = option.maximumDepth;
 		};
